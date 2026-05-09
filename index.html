@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab Nexis | Clinical Excellence</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#020617",
+                        surface: "#0f172a",
+                        accent: "#22d3ee",
+                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #020617; color: #f1f5f9; }
+        
+        .text-clean { background: linear-gradient(to right, #22d3ee, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .ambient-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 400px; background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, rgba(15, 23, 42, 0) 70%); z-index: -1; filter: blur(40px); }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: floating 8s ease-in-out infinite; }
+
+        .glow-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 28px;
+            backdrop-filter: blur(12px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glow-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.04); border-color: rgba(255,255,255,0.1); }
+        .card-description { @apply text-slate-400 transition-colors duration-300 text-justify; }
+        .glow-card:hover .card-description { @apply text-white; }
+        
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 20px; 
+            transition: all 0.4s ease; 
+        }
+        .glass-card:hover .side-line { border-color: #22d3ee !important; }
+
+        .video-container {
+            position: relative;
+            box-shadow: 0 0 50px rgba(34, 211, 238, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+        }
+        .video-container:hover { transform: scale(1.01); }
+
+        .footer-gradient {
+            background: linear-gradient(to bottom, #020617 0%, rgba(34, 211, 238, 0.03) 50%, rgba(34, 211, 238, 0.08) 100%);
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.2);
+            filter: brightness(1.1);
+        }
+
+        /* Mobile Menu CSS */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        #mobile-menu.active {
+            max-height: 500px;
+            opacity: 1;
+            padding-bottom: 24px;
+        }
+    </style>
+</head>
+<body class="font-sans">
+
+   <!-- Navbar (LOCKED) -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-primary/80 backdrop-blur-md"> 
+    <div class="container mx-auto px-6 py-5 flex justify-between items-center"> 
+        <div class="flex items-center gap-4"> 
+            <a href="index.html" class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-white text-primary rounded-xl flex items-center justify-center font-black text-xl italic">LN</div> 
+                <h1 class="text-sm font-bold tracking-[0.3em] uppercase hidden sm:block">Lab Nexis</h1>
+            </a>
+        </div> 
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400"> 
+            <a href="index.html" class="hover:text-accent transition-all">Home</a>
+            <a href="services.html" class="hover:text-accent transition-all">Services</a>
+            <a href="pricing.html" class="hover:text-accent transition-all">Pricing</a>
+            <a href="contact.html" class="text-white border-b border-accent pb-1">Contact</a>
+            <a href="#" class="border border-white/20 px-5 py-2 rounded-full text-white hover:bg-accent hover:border-accent hover:text-primary transition-all duration-500">For Clients</a>
+        </div>
+
+        <button id="menu-toggle" class="lg:hidden text-white focus:outline-none">
+            <i id="menu-icon" class="fa-solid fa-bars-staggered text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden px-6 bg-primary/95 border-b border-white/5">
+        <div class="flex flex-col space-y-5 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 pt-4">
+            <a href="index.html" class="mobile-link">Home</a>
+            <a href="services.html" class="mobile-link">Services</a>
+            <a href="pricing.html" class="mobile-link">Pricing</a>
+            <a href="contact.html" class="mobile-link text-white">Contact</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <div class="ambient-glow"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                
+                <div class="lg:w-1/2 text-left">
+                    <h2 class="text-5xl md:text-[80px] font-bold tracking-tighter leading-[0.9] mb-8">
+                        Clinical Labs <br>
+                        <span class="text-clean">Deserve Better</span> <br>
+                        Software.
+                    </h2>
+                    <div class="mb-10 text-justify">
+                        <p class="text-lg md:text-xl text-slate-400 italic leading-relaxed">
+                            Building the digital backbone for clinical lab excellence. Our mission is to provide cutting-edge infrastructure that empowers laboratories to scale efficiently while maintaining absolute diagnostic precision and global compliance standards.
+                        </p>
+                    </div>
+                    <a href="#provides" class="inline-block border border-white/20 px-8 py-3 rounded-full text-white text-sm uppercase tracking-widest hover:bg-accent hover:border-accent hover:text-primary transition-all duration-500">Explore Services</a>
+                </div>
+
+                <!-- Animated Image Column -->
+                <div class="lg:w-1/2 animate-float">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-accent to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="relative bg-surface rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                            <!-- Fallback UI / Image Placement -->
+                            <div class="aspect-video bg-white/5 flex items-center justify-center border-dashed border-2 border-white/10 rounded-2xl m-4">
+                                <span class="text-slate-500 text-xs uppercase tracking-widest">Image Placement Area</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Provides Section -->
+    <main id="provides" class="container mx-auto px-6 pb-12">
+        <div class="pt-20 text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 text-white">Lab Nexis Provides</h2>
+            <div class="w-16 h-1 bg-white/10 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+            <div class="glow-card p-10 group flex flex-col items-center text-center">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 bg-gradient-to-br from-emerald-400 to-teal-600 group-hover:scale-110 transition-transform mx-auto">
+                    <i class="fa-solid fa-clipboard-check text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-wider mb-4">cQMS</h3>
+                <p class="card-description text-sm leading-relaxed text-center">Paperless tracking of all laboratory activities. Access compliance documentation remotely with AI mock inspection readiness.</p>
+            </div>
+            <div class="glow-card p-10 group flex flex-col items-center text-center">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 bg-gradient-to-br from-blue-400 to-indigo-600 group-hover:scale-110 transition-transform mx-auto">
+                    <i class="fa-solid fa-chart-line text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-wider mb-4">cLRS</h3>
+                <p class="card-description text-sm leading-relaxed text-center">HIPAA compliant patient reporting with integrated Levey Jennings charts and real-time QC review systems.</p>
+            </div>
+            <div class="glow-card p-10 group flex flex-col items-center text-center">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 bg-gradient-to-br from-purple-400 to-fuchsia-600 group-hover:scale-110 transition-transform mx-auto">
+                    <i class="fa-solid fa-dna text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-wider mb-4">PGx</h3>
+                <p class="card-description text-sm leading-relaxed text-center">Predictive AI generating clinical utility reports, vetted by board-certified professionals before release.</p>
+            </div>
+            <div class="glow-card p-10 group flex flex-col items-center text-center">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 bg-gradient-to-br from-rose-400 to-pink-600 group-hover:scale-110 transition-transform mx-auto">
+                    <i class="fa-solid fa-virus-covid text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-wider mb-4">CGx</h3>
+                <p class="card-description text-sm leading-relaxed text-center">Interpretation of SNPs related to cancer genetics and neurology using advanced AI predictive models.</p>
+            </div>
+            <div class="glow-card p-10 group flex flex-col items-center text-center">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 bg-gradient-to-br from-amber-400 to-orange-600 group-hover:scale-110 transition-transform mx-auto">
+                    <i class="fa-solid fa-microchip text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-wider mb-4">Bioinformatics</h3>
+                <p class="card-description text-sm leading-relaxed text-center">Data science solutions and machine learning models for drug development and molecular research projects.</p>
+            </div>
+            <div class="glow-card p-10 group flex flex-col items-center text-center">
+                <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 bg-gradient-to-br from-cyan-400 to-blue-500 group-hover:scale-110 transition-transform mx-auto">
+                    <i class="fa-solid fa-headset text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white uppercase tracking-wider mb-4">Compliance</h3>
+                <p class="card-description text-sm leading-relaxed text-center">Remote day-to-day monitoring of QMS activity and PT calendar reminders for absolute laboratory compliance.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- VIDEO SECTION -->
+    <section class="container mx-auto px-6 mb-40">
+        <div class="max-w-4xl mx-auto">
+            <div class="video-container bg-surface group cursor-pointer aspect-video flex items-center justify-center relative">
+                <video id="labVideo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" poster="path/to/your/video-frame-at-1s.jpg">
+                    <source src="your-video-link.mp4#t=1" type="video/mp4">
+                </video>
+                <div id="videoOverlay" class="absolute inset-0 flex flex-col items-center justify-center bg-primary/40 group-hover:bg-primary/20 transition-all duration-500">
+                    <div class="w-16 h-16 bg-accent text-primary rounded-full flex items-center justify-center pl-1 shadow-[0_0_20px_rgba(34,211,238,0.4)] transform group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-play text-xl"></i>
+                    </div>
+                    <p class="mt-4 text-[9px] font-black uppercase tracking-[0.4em] text-white">Watch Platform Demo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section id="why-choose" class="container mx-auto px-6 py-40 border-t border-white/5">
+        <div class="text-center mb-24">
+            <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 text-white">Why Choose Lab Nexis</h2>
+            <div class="flex items-center justify-center gap-4 text-accent font-bold italic text-lg">
+                <span class="h-[1px] w-12 bg-accent/30 hidden md:block"></span>
+                "Precision AI, Expertly Governed."
+                <span class="h-[1px] w-12 bg-accent/30 hidden md:block"></span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card p-8 group side-line border-l-2 border-l-white/10 hover:border-l-accent transition-all duration-300">
+                <span class="text-[10px] font-black text-accent/40 uppercase tracking-[0.3em] mb-4 block">01 / Solution</span>
+                <h3 class="text-xl font-bold text-white mb-4 leading-tight text-left">Digital Lab Solutions</h3>
+                <p class="text-slate-400 text-xs leading-relaxed text-justify group-hover:text-white transition-colors duration-300">Scaling clinical operations with cloud-native infrastructure for high-throughput environments.</p>
+            </div>
+            <div class="glass-card p-8 group side-line border-l-2 border-l-white/10 hover:border-l-accent transition-all duration-300">
+                <span class="text-[10px] font-black text-white/20 uppercase tracking-[0.3em] mb-4 block">02 / Genetics</span>
+                <h3 class="text-xl font-bold text-white mb-4 leading-tight text-left">Precision Bioinformatics</h3>
+                <p class="text-slate-400 text-xs leading-relaxed text-justify group-hover:text-white transition-colors duration-300">Advanced genomic data processing transforming complex sequences into clinical clarity.</p>
+            </div>
+            <div class="glass-card p-8 group side-line border-l-2 border-l-white/10 hover:border-l-accent transition-all duration-300">
+                <span class="text-[10px] font-black text-white/20 uppercase tracking-[0.3em] mb-4 block">03 / Analysis</span>
+                <h3 class="text-xl font-bold text-white mb-4 leading-tight text-left">Predictive Models</h3>
+                <p class="text-slate-400 text-xs leading-relaxed text-justify group-hover:text-white transition-colors duration-300">AI-driven risk assessment models vetted by rigorous biomedical research standards.</p>
+            </div>
+            <div class="glass-card p-8 group side-line border-l-2 border-l-white/10 hover:border-l-accent transition-all duration-300">
+                <span class="text-[10px] font-black text-accent/60 uppercase tracking-[0.3em] mb-4 block">04 / Intelligence</span>
+                <h3 class="text-xl font-bold text-white mb-4 leading-tight text-left">AI Assistants</h3>
+                <p class="text-slate-400 text-xs leading-relaxed text-justify group-hover:text-white transition-colors duration-300">Intelligent co-pilots helping clinicians maintain absolute diagnostic accuracy.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Section -->
+    <section class="container mx-auto px-6 py-32">
+        <div class="glow-card p-12 md:p-20 text-center relative overflow-hidden border-accent/20 bg-accent/[0.02]">
+            <div class="relative z-10 max-w-3xl mx-auto">
+                <span class="text-accent text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Strategic Partnership</span>
+                <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tighter mb-8 leading-tight">Ready to modernize <br> <span class="text-accent">your laboratory?</span></h2>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center mt-12">
+                    <a href="mailto:labnexis@labsnexis.com" class="bg-white text-primary px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-accent hover:scale-105 transition-all duration-300">Consult with Our Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-gradient pt-32 pb-12 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-white text-primary rounded-xl flex items-center justify-center font-black text-xl italic">LN</div> 
+                        <h1 class="text-sm font-bold tracking-[0.3em] uppercase">Lab Nexis</h1>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex">
+                            <input type="email" placeholder="Email Address" class="bg-white/5 border border-white/10 rounded-l-lg px-4 py-2 text-xs focus:outline-none focus:border-accent w-full text-white">
+                            <button class="bg-accent text-primary px-5 py-2 rounded-r-lg text-[10px] font-bold uppercase tracking-widest btn-glow transition-all duration-300">Join</button>
+                        </div>
+                        <div class="flex items-center gap-3 text-white/100 hover:text-accent transition-colors duration-300">
+                            <i class="fa-solid fa-envelope text-xs"></i>
+                            <a href="mailto:labnexis@labsnexis.com" class="text-[10px] font-bold tracking-widest uppercase">labnexis@labsnexis.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white/50">Solutions</h3>
+                    <ul class="text-xs text-slate-400 space-y-3 font-medium">
+                        <li><a href="#" class="hover:text-accent transition-colors">Quality Management (cQMS)</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Lab Reporting (cLRS)</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Genetic Reporting (PGx/CGx)</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Bioinformatics</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white/50">Resources</h3>
+                    <ul class="text-xs text-slate-400 space-y-3 font-medium">
+                        <li><a href="#" class="hover:text-accent transition-colors">Technical Roadmap</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Compliance Guide</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white/50">Connect</h3>
+                    <div class="flex gap-6 text-2xl text-slate-500">
+                        <a href="#" class="hover:text-[#1877F2] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-[#1DA1F2] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="hover:text-[#FF0000] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="hover:text-[#0A66C2] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-600 tracking-[0.3em] uppercase">
+                <p>&copy; 2026 Lab Nexis. Precision in every byte.</p>
+                <div class="flex gap-8 mt-4 md:mt-0 tracking-[0.2em]">
+                    <span>Global Operations: USA | NEPAL</span>
+                </div>
+            </div>
+        </div>
+    </footer>
