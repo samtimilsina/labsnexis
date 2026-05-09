@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services | Lab Nexis</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#020617",
+                        surface: "#0f172a",
+                        accent: "#22d3ee",
+                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { background-color: #020617; color: #f1f5f9; }
+        
+        .footer-gradient {
+            background: linear-gradient(to bottom, #020617 0%, rgba(34, 211, 238, 0.03) 50%, rgba(34, 211, 238, 0.08) 100%);
+        }
+
+        .service-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            border-color: rgba(34, 211, 238, 0.3);
+            transform: translateY(-5px);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        #mobile-menu.active {
+            max-height: 500px;
+            opacity: 1;
+            padding-bottom: 24px;
+        }
+    </style>
+</head>
+<body class="font-sans">
+
+    <!-- Navbar (LOCKED) -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-primary/80 backdrop-blur-md"> 
+    <div class="container mx-auto px-6 py-5 flex justify-between items-center"> 
+        <div class="flex items-center gap-4"> 
+            <a href="index.html" class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-white text-primary rounded-xl flex items-center justify-center font-black text-xl italic">LN</div> 
+                <h1 class="text-sm font-bold tracking-[0.3em] uppercase hidden sm:block">Lab Nexis</h1>
+            </a>
+        </div> 
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400"> 
+            <a href="index.html" class="hover:text-accent transition-all">Home</a>
+            <a href="services.html" class="hover:text-accent transition-all">Services</a>
+            <a href="pricing.html" class="hover:text-accent transition-all">Pricing</a>
+            <a href="contact.html" class="text-white border-b border-accent pb-1">Contact</a>
+            <a href="#" class="border border-white/20 px-5 py-2 rounded-full text-white hover:bg-accent hover:border-accent hover:text-primary transition-all duration-500">For Clients</a>
+        </div>
+
+        <button id="menu-toggle" class="lg:hidden text-white focus:outline-none">
+            <i id="menu-icon" class="fa-solid fa-bars-staggered text-xl"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden px-6 bg-primary/95 border-b border-white/5">
+        <div class="flex flex-col space-y-5 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 pt-4">
+            <a href="index.html" class="mobile-link">Home</a>
+            <a href="services.html" class="mobile-link">Services</a>
+            <a href="pricing.html" class="mobile-link">Pricing</a>
+            <a href="contact.html" class="mobile-link text-white">Contact</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- Body Section -->
+    <main class="pt-40 pb-24">
+        <div class="container mx-auto px-6">
+            
+            <!-- Intro (CENTERED) -->
+            <div class="max-w-3xl mx-auto text-center mb-24">
+                <h2 class="text-accent text-[10px] font-black uppercase tracking-[0.5em] mb-6">Capabilities</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-white tracking-tighter leading-tight">
+                    Advanced Infrastructure for the <span class="text-slate-500">Modern Laboratory.</span>
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8">
+                
+                <!-- cQMS Card -->
+                <div class="service-card rounded-3xl p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+                        <div class="md:w-1/2">
+                            <h4 class="text-2xl font-bold text-white mb-6 uppercase tracking-wider">Clinical Lab Quality Management System (cQMS)</h4>
+                            <p class="text-slate-400 text-sm mb-6 leading-relaxed">Do you have scattered paper, loose binders, and piles of clutter papers in the lab? Do you struggle to find IFU and MSDS when needed? Does your lab struggle to show required compliance documents at the time inspection? Do you keep track of Lab director’s oversight, CAPA, and instrument maintenance records. We have you covered.</p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6 border-l-2 border-accent/30 pl-6">Our digital platform allows you to keep track of all laboratory activities online. Your lab is paperless. You can access laboratory compliance documentation remotely from anywhere. It gives a piece of mind from compliance inspection and you can focus on the business. If you enable our AI inspector agent, you can do a mock CAP/COLA/CLIA inspection anytime.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- cLRS Card -->
+                <div class="service-card rounded-3xl p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+                        <div class="md:w-1/2">
+                            <h4 class="text-2xl font-bold text-white mb-6 uppercase tracking-wider">Clinical Lab Reporting System (cLRS)</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Our lab reporting system is a simple and user-friendly tool to report patients. It is a HIPPA compliance software that allows patient reporting a peace of mind. It can be integrated to any EMRS available in the market.</p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6 bg-white/5 p-6 rounded-2xl border border-white/5 uppercase tracking-wide">
+                                <span class="text-accent font-bold">Levey Jennings Tool:</span> Real-time review of QC results on a daily basis. Automatically compares today’s QC result with past five results and gives you an acceptance decision based on <span class="text-white">WEST GUARD RULES</span>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Genetics Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="service-card rounded-3xl p-10 border-t-2 border-t-purple-500/50">
+                        <h4 class="text-lg font-bold text-white mb-6 tracking-[0.1em] uppercase">Pharmacogenetics (PGx) Reporting</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Our platform allows molecular diagnostics labs to upload sequencing data and create informative PGx reports. We utilize vast research articles and clinical trial data.</p>
+                        <p class="text-slate-500 text-[11px] leading-relaxed italic">Reviewed by board certified Toxicologists/Pharmacologists and Pharmacists to derive professional review notes.</p>
+                    </div>
+                    <div class="service-card rounded-3xl p-10 border-t-2 border-t-rose-500/50">
+                        <h4 class="text-lg font-bold text-white mb-6 tracking-[0.1em] uppercase">Cancer genetics (CGx) Reporting</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">We apply AI predictive models to interpret the clinical utility of SNPs related to cancer genetics, neurology, and molecular genetics.</p>
+                        <p class="text-slate-500 text-[11px] leading-relaxed italic">Reports are vetted by board certified professionals of relevant biomedical fields before physician release.</p>
+                    </div>
+                </div>
+
+                <!-- Bioinformatics -->
+                <div class="service-card rounded-3xl p-8 md:p-12 text-center bg-accent/[0.02]">
+                    <h4 class="text-2xl font-bold text-white mb-8 uppercase tracking-widest">Bioinformatics and Predictive modeling</h4>
+                    <p class="text-slate-300 text-sm max-w-4xl mx-auto leading-relaxed mb-6">We are a team of scientists who specialise in data science/machine learning, epidemiology, biomedical sciences and laboratory medicine. Our team of experts can be a part of your research team whether it is a drug development project, drug delivery project, basic molecular research or chemical risk assessment.</p>
+                    <div class="inline-block px-8 py-3 border border-white/10 rounded-full text-[10px] text-accent tracking-[0.3em] font-black uppercase">Data Solution & ML Models</div>
+                </div>
+
+                <!-- Compliance -->
+                <div class="service-card rounded-3xl p-8 md:p-12 border-l-4 border-l-accent">
+                    <h4 class="text-2xl font-bold text-white mb-6 uppercase tracking-wider">Remote Laboratory Compliance support</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="md:col-span-2">
+                            <p class="text-slate-400 text-sm leading-relaxed">Our remote laboratory compliance support offers you a day-to-day monitoring of your QMS activity and sends your lab tech, supervisor or laboratory manager to relevant recommendations. It will monitor your PT calendar and review the attestation forms and remind you of pending activities.</p>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-xl flex items-center justify-center text-center">
+                            <p class="text-[10px] font-black tracking-widest uppercase text-slate-500 leading-loose">CLIA / CAP / COLA <br> Regulations Monitoring</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (LOCKED) -->
+    <footer class="footer-gradient pt-32 pb-12 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-white text-primary rounded-xl flex items-center justify-center font-black text-xl italic">LN</div> 
+                        <h1 class="text-sm font-bold tracking-[0.3em] uppercase">Lab Nexis</h1>
+                    </div>
+                    <div class="flex items-center gap-3 text-white/100 hover:text-accent transition-colors duration-300">
+                        <i class="fa-solid fa-envelope text-xs"></i>
+                        <a href="mailto:labnexis@labsnexis.com" class="text-[10px] font-bold tracking-widest uppercase">labnexis@labsnexis.com</a>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white/50">Solutions</h3>
+                    <ul class="text-xs text-slate-400 space-y-3 font-medium">
+                        <li><a href="#" class="hover:text-accent transition-colors">Quality Management (cQMS)</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Lab Reporting (cLRS)</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Genetic Reporting (PGx/CGx)</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Bioinformatics</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white/50">Resources</h3>
+                    <ul class="text-xs text-slate-400 space-y-3 font-medium">
+                        <li><a href="#" class="hover:text-accent transition-colors">Technical Roadmap</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Compliance Guide</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white/50">Connect</h3>
+                    <div class="flex gap-6 text-2xl text-slate-500">
+                        <a href="#" class="hover:text-[#1877F2] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-[#1DA1F2] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="hover:text-[#FF0000] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="hover:text-[#0A66C2] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-600 tracking-[0.3em] uppercase">
+                <p>&copy; 2026 Lab Nexis. Precision in every byte.</p>
+                <div class="flex gap-8 mt-4 md:mt-0 tracking-[0.2em]"><span>Global Operations: USA | NEPAL</span></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars-staggered');
+            menuIcon.classList.toggle('fa-xmark');
+        });
+    </script>
+</body>
+</html>
