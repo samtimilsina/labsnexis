@@ -212,8 +212,8 @@
     <section class="container mx-auto px-6 mb-40">
         <div class="max-w-4xl mx-auto">
             <div class="video-container bg-surface group cursor-pointer aspect-video flex items-center justify-center relative">
-                <!-- Added 'muted' and removed 'poster' with missing extension for better compatibility -->
-                <video id="labVideo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" muted playsinline>
+                <!-- Removed 'muted' so it plays with sound when clicked -->
+                <video id="labVideo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" playsinline>
                     <source src="assets/video2.mp4" type="video/mp4">
                 </video>
                 <div id="videoOverlay" class="absolute inset-0 flex flex-col items-center justify-center bg-primary/40 group-hover:bg-primary/20 transition-all duration-500">
@@ -343,21 +343,35 @@
             menuIcon.classList.toggle('fa-xmark');
         });
 
-        // Video Play Logic Updated
+        // --- Video Control Updated Logic ---
         const videoContainer = document.querySelector('.video-container');
         const video = document.getElementById('labVideo');
         const overlay = document.getElementById('videoOverlay');
 
         videoContainer.addEventListener('click', () => {
             if (video.paused) {
+                // Play and Unmute
+                video.muted = false; 
                 video.play().catch(e => console.error("Error playing video:", e));
+                
+                // Show standard video controllers (play/pause/volume/timeline)
+                video.setAttribute("controls", "true");
+                
+                // Hide custom overlay
                 overlay.style.opacity = '0';
                 overlay.style.pointerEvents = 'none';
             } else {
+                // If user clicks while playing (and not clicking the controller bar itself)
                 video.pause();
-                overlay.style.opacity = '1';
-                overlay.style.pointerEvents = 'auto';
             }
+        });
+
+        // When video ends, reset state
+        video.addEventListener('ended', () => {
+            video.removeAttribute("controls");
+            video.currentTime = 0;
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'auto';
         });
     </script>
 </body>
