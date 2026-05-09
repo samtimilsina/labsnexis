@@ -76,7 +76,6 @@
             filter: brightness(1.1);
         }
 
-        /* Mobile Menu CSS */
         #mobile-menu {
             transition: all 0.3s ease-in-out;
             max-height: 0;
@@ -92,7 +91,6 @@
 </head>
 <body class="font-sans">
 
-   <!-- Navbar (LOCKED) -->
 <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-primary/80 backdrop-blur-md"> 
     <div class="container mx-auto px-6 py-5 flex justify-between items-center"> 
         <div class="flex items-center gap-4"> 
@@ -102,10 +100,9 @@
             </a>
         </div> 
 
-        <!-- Desktop Menu -->
         <div class="hidden lg:flex items-center space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400"> 
             <a href="index.html" class="hover:text-accent transition-all">Home</a>
-            <a href="services.html" class="hover:text-accent transition-all">Services</a>
+            <a href="service.html" class="hover:text-accent transition-all">Services</a>
             <a href="pricing.html" class="hover:text-accent transition-all">Pricing</a>
             <a href="contact.html" class="text-white border-b border-accent pb-1">Contact</a>
             <a href="#" class="border border-white/20 px-5 py-2 rounded-full text-white hover:bg-accent hover:border-accent hover:text-primary transition-all duration-500">For Clients</a>
@@ -116,18 +113,16 @@
         </button>
     </div>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="lg:hidden px-6 bg-primary/95 border-b border-white/5">
         <div class="flex flex-col space-y-5 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 pt-4">
             <a href="index.html" class="mobile-link">Home</a>
-            <a href="services.html" class="mobile-link">Services</a>
+            <a href="service.html" class="mobile-link">Services</a>
             <a href="pricing.html" class="mobile-link">Pricing</a>
             <a href="contact.html" class="mobile-link text-white">Contact</a>
         </div>
     </div>
 </nav>
 
-    <!-- Hero Section -->
     <header id="home" class="relative min-h-screen flex items-center pt-24 overflow-hidden">
         <div class="ambient-glow"></div>
         <div class="container mx-auto px-6 relative z-10">
@@ -147,15 +142,11 @@
                     <a href="#provides" class="inline-block border border-white/20 px-8 py-3 rounded-full text-white text-sm uppercase tracking-widest hover:bg-accent hover:border-accent hover:text-primary transition-all duration-500">Explore Services</a>
                 </div>
 
-                <!-- Animated Image Column -->
                 <div class="lg:w-1/2 animate-float">
                     <div class="relative group">
                         <div class="absolute -inset-1 bg-gradient-to-r from-accent to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                         <div class="relative bg-surface rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                            <!-- Fallback UI / Image Placement -->
-                            <div class="aspect-video bg-white/5 flex items-center justify-center border-dashed border-2 border-white/10 rounded-2xl m-4">
-                                <span class="text-slate-500 text-xs uppercase tracking-widest">Image Placement Area</span>
-                            </div>
+                            <img src="assets/a1" alt="Lab Nexis Hero" class="w-full h-auto object-cover">
                         </div>
                     </div>
                 </div>
@@ -164,7 +155,6 @@
         </div>
     </header>
 
-    <!-- Provides Section -->
     <main id="provides" class="container mx-auto px-6 pb-12">
         <div class="pt-20 text-center mb-20">
             <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 text-white">Lab Nexis Provides</h2>
@@ -217,12 +207,11 @@
         </div>
     </main>
 
-    <!-- VIDEO SECTION -->
     <section class="container mx-auto px-6 mb-40">
         <div class="max-w-4xl mx-auto">
             <div class="video-container bg-surface group cursor-pointer aspect-video flex items-center justify-center relative">
-                <video id="labVideo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" poster="path/to/your/video-frame-at-1s.jpg">
-                    <source src="your-video-link.mp4#t=1" type="video/mp4">
+                <video id="labVideo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" poster="assets/a1">
+                    <source src="assets/video2" type="video/mp4">
                 </video>
                 <div id="videoOverlay" class="absolute inset-0 flex flex-col items-center justify-center bg-primary/40 group-hover:bg-primary/20 transition-all duration-500">
                     <div class="w-16 h-16 bg-accent text-primary rounded-full flex items-center justify-center pl-1 shadow-[0_0_20px_rgba(34,211,238,0.4)] transform group-hover:scale-110 transition-transform">
@@ -234,7 +223,6 @@
         </div>
     </section>
 
-    <!-- Why Choose Section -->
     <section id="why-choose" class="container mx-auto px-6 py-40 border-t border-white/5">
         <div class="text-center mb-24">
             <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4 text-white">Why Choose Lab Nexis</h2>
@@ -269,7 +257,6 @@
         </div>
     </section>
 
-    <!-- Consultation Section -->
     <section class="container mx-auto px-6 py-32">
         <div class="glow-card p-12 md:p-20 text-center relative overflow-hidden border-accent/20 bg-accent/[0.02]">
             <div class="relative z-10 max-w-3xl mx-auto">
@@ -341,3 +328,34 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars-staggered');
+            menuIcon.classList.toggle('fa-xmark');
+        });
+
+        // Video Play Logic
+        const videoContainer = document.querySelector('.video-container');
+        const video = document.getElementById('labVideo');
+        const overlay = document.getElementById('videoOverlay');
+
+        videoContainer.addEventListener('click', () => {
+            if (video.paused) {
+                video.play();
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            } else {
+                video.pause();
+                overlay.style.opacity = '1';
+                overlay.style.pointerEvents = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
