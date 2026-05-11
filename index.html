@@ -26,20 +26,24 @@
 
     <style>
         html { scroll-behavior: smooth; }
-          body { 
+        
+        body { 
             background: radial-gradient(circle at top, #2e1065 0%, #0f172a 60%, #020617 100%);
             background-attachment: fixed;
             color: #f1f5f9; 
+        }
         
         .text-clean { background: linear-gradient(to right, #22d3ee, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .ambient-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 400px; background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, rgba(15, 23, 42, 0) 70%); z-index: -1; filter: blur(40px); }
-
+        
+        /* Floating Animation Keyframes */
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
-        .animate-float { animation: floating 8s ease-in-out infinite; }
+        .animate-float { animation: floating 6s ease-in-out infinite; }
+
+        .ambient-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 400px; background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, rgba(15, 23, 42, 0) 70%); z-index: -1; filter: blur(40px); }
 
         .glow-card { 
             background: rgba(255, 255, 255, 0.02); 
@@ -71,12 +75,7 @@
         .video-container:hover { transform: scale(1.01); }
 
         .footer-gradient {
-            background: linear-gradient(to bottom, #020617 0%, rgba(34, 211, 238, 0.03) 50%, rgba(34, 211, 238, 0.08) 100%);
-        }
-
-        .btn-glow:hover {
-            box-shadow: 0 0 15px rgba(34, 211, 238, 0.6), 0 0 30px rgba(34, 211, 238, 0.2);
-            filter: brightness(1.1);
+            background: linear-gradient(to bottom, transparent 0%, rgba(34, 211, 238, 0.03) 50%, rgba(34, 211, 238, 0.08) 100%);
         }
 
         #mobile-menu {
@@ -147,6 +146,7 @@
                     <a href="#provides" class="inline-block border border-white/20 px-8 py-3 rounded-full text-white text-sm uppercase tracking-widest hover:bg-accent hover:border-accent hover:text-primary transition-all duration-500">Explore Services</a>
                 </div>
 
+                <!-- Floating Animation applied here -->
                 <div class="lg:w-1/2 animate-float">
                     <div class="relative group">
                         <div class="absolute -inset-1 bg-gradient-to-r from-accent to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
@@ -215,7 +215,6 @@
     <section class="container mx-auto px-6 mb-40">
         <div class="max-w-4xl mx-auto">
             <div class="video-container bg-surface group cursor-pointer aspect-video flex items-center justify-center relative">
-                <!-- Removed 'muted' so it plays with sound when clicked -->
                 <video id="labVideo" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" playsinline>
                     <source src="assets/video2.mp4" type="video/mp4">
                 </video>
@@ -263,75 +262,9 @@
         </div>
     </section>
 
-    <section class="container mx-auto px-6 py-32">
-        <div class="glow-card p-12 md:p-20 text-center relative overflow-hidden border-accent/20 bg-accent/[0.02]">
-            <div class="relative z-10 max-w-3xl mx-auto">
-                <span class="text-accent text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Strategic Partnership</span>
-                <h2 class="text-4xl md:text-6xl font-bold text-white tracking-tighter mb-8 leading-tight">Ready to modernize <br> <span class="text-accent">your laboratory?</span></h2>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center mt-12">
-                    <a href="mailto:labnexis@labsnexis.com" class="bg-white text-primary px-10 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-accent hover:scale-105 transition-all duration-300">Consult with Our Team</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer class="footer-gradient pt-32 pb-12 border-t border-white/5">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-white text-primary rounded-xl flex items-center justify-center font-black text-xl italic">LN</div> 
-                        <h1 class="text-sm font-bold tracking-[0.3em] uppercase">Lab Nexis</h1>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex">
-                            <input type="email" placeholder="Email Address" class="bg-white/5 border border-white/10 rounded-l-lg px-4 py-2 text-xs focus:outline-none focus:border-accent w-full text-white">
-                            <button class="bg-accent text-primary px-5 py-2 rounded-r-lg text-[10px] font-bold uppercase tracking-widest btn-glow transition-all duration-300">Join</button>
-                        </div>
-                        <div class="flex items-center gap-3 text-white/100 hover:text-accent transition-colors duration-300">
-                            <i class="fa-solid fa-envelope text-xs"></i>
-                            <a href="mailto:labnexis@labsnexis.com" class="text-[10px] font-bold tracking-widest uppercase">labnexis@labsnexis.com</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white/50">Solutions</h3>
-                    <ul class="text-xs text-slate-400 space-y-3 font-medium">
-                        <li><a href="#" class="hover:text-accent transition-colors">Quality Management (cQMS)</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">Lab Reporting (cLRS)</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">Genetic Reporting (PGx/CGx)</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">Bioinformatics</a></li>
-                    </ul>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white/50">Resources</h3>
-                    <ul class="text-xs text-slate-400 space-y-3 font-medium">
-                        <li><a href="#" class="hover:text-accent transition-colors">Technical Roadmap</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">Compliance Guide</a></li>
-                        <li><a href="#" class="hover:text-accent transition-colors">Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <div class="space-y-6">
-                    <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-white/50">Connect</h3>
-                    <div class="flex gap-6 text-2xl text-slate-500">
-                        <a href="#" class="hover:text-[#1877F2] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" class="hover:text-[#1DA1F2] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="hover:text-[#FF0000] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#" class="hover:text-[#0A66C2] transition-all duration-300 transform hover:scale-110"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-slate-600 tracking-[0.3em] uppercase">
-                <p>&copy; 2026 Lab Nexis. Precision in every byte.</p>
-                <div class="flex gap-8 mt-4 md:mt-0 tracking-[0.2em]">
-                    <span>Global Operations: USA | NEPAL</span>
-                </div>
-            </div>
+        <div class="container mx-auto px-6 text-center">
+             <p class="text-[10px] text-slate-600 tracking-[0.3em] uppercase">&copy; 2026 Lab Nexis. Precision in every byte.</p>
         </div>
     </footer>
 
@@ -346,30 +279,22 @@
             menuIcon.classList.toggle('fa-xmark');
         });
 
-        // --- Video Control Updated Logic ---
         const videoContainer = document.querySelector('.video-container');
         const video = document.getElementById('labVideo');
         const overlay = document.getElementById('videoOverlay');
 
         videoContainer.addEventListener('click', () => {
             if (video.paused) {
-                // Play and Unmute
                 video.muted = false; 
                 video.play().catch(e => console.error("Error playing video:", e));
-                
-                // Show standard video controllers (play/pause/volume/timeline)
                 video.setAttribute("controls", "true");
-                
-                // Hide custom overlay
                 overlay.style.opacity = '0';
                 overlay.style.pointerEvents = 'none';
             } else {
-                // If user clicks while playing (and not clicking the controller bar itself)
                 video.pause();
             }
         });
 
-        // When video ends, reset state
         video.addEventListener('ended', () => {
             video.removeAttribute("controls");
             video.currentTime = 0;
